@@ -54,7 +54,7 @@ export default function MobilePortfolioPage() {
           {filteredImages.length > 0 ? (
             <div className="w-full">
               <div style={{ height: '400px', position: 'relative' }}>
-                <InfiniteMenu 
+             <InfiniteMenu 
                   portfolioImages={filteredImages}
                   scale={1.5}
                   onItemClick={handleItemClick}

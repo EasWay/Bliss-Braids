@@ -1,4 +1,4 @@
-import HeroSection from '@/components/hero/HeroSection';
+import DesktopHeroSection from '@/components/desktop/home/DesktopHeroSection';
 import DesktopWhyChooseUs from '@/components/desktop/home/DesktopWhyChooseUs';
 import { DesktopServicesPreview } from '@/components/desktop/home/DesktopServicesPreview';
 import MobileFooter from '@/components/mobile/MobileFooter';
@@ -7,9 +7,9 @@ import Image from 'next/image';
 export default function DesktopHomePage() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden" style={{ backgroundColor: '#020119' }}>
-        {/* Hero Section - Desktop Optimized */}
+        {/* Hero Section - Desktop Optimized with Static Image */}
         <div className="w-full">
-          <HeroSection />
+          <DesktopHeroSection />
         </div>
         
         {/* Why Choose Us Section */}

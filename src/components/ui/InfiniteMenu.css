@@ -1,5 +1,9 @@
 /* InfiniteMenu Component Styles */
 
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
 #infinite-grid-menu-canvas {
   cursor: grab;
   width: 100%;
@@ -7,10 +11,30 @@
   overflow: hidden;
   position: relative;
   outline: none;
+  background: transparent !important;
 }
 
 #infinite-grid-menu-canvas:active {
   cursor: grabbing;
+}
+
+/* Text Info Container */
+.text-info-container {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  z-index: 10;
+  max-width: 320px;
+  transition: all 0.3s ease;
+}
+
+.text-info-container:hover {
+  background: transparent;
+  border: none;
 }
 
 .action-button {
@@ -25,24 +49,35 @@
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  border: 3px solid #000;
+  border: 3px solid rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(245, 0, 87, 0.3);
 }
 
 .action-button:hover {
   background: #E91E63;
   transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 25px rgba(245, 0, 87, 0.5);
 }
 
 .face-title {
   user-select: none;
-  position: absolute;
-  font-weight: 900;
-  font-size: 2.5rem;
-  left: 1.6em;
-  top: 50%;
-  color: #000;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.face-description {
+  user-select: none;
+  font-size: 0.9rem;
+  color: rgba(245, 0, 87, 1); /* Pink color for price */
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .action-button-icon {
@@ -50,107 +85,119 @@
   position: relative;
   color: #fff;
   top: 2px;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
 }
 
-.face-title {
-  position: absolute;
-  top: 50%;
-  transform: translate(20%, -50%);
-}
-
-.face-title.active {
+.text-info-container .face-title.active,
+.text-info-container .face-description.active {
   opacity: 1;
-  transform: translate(20%, -50%);
+  transform: translateY(0);
   pointer-events: auto;
-  transition: 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-.face-title.inactive {
+.text-info-container .face-title.inactive,
+.text-info-container .face-description.inactive {
   pointer-events: none;
-  opacity: 0;
-  transition: 0.1s ease;
-}
-
-.face-description {
-  user-select: none;
-  position: absolute;
-  max-width: 12ch;
-  top: 50%;
-  font-size: 1.1rem;
-  right: 1%;
-  transform: translate(0, -50%);
-  color: #333;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.face-description.active {
-  opacity: 1;
-  transform: translate(-90%, -50%);
-  pointer-events: auto;
-  transition: 0.5s ease;
-}
-
-.face-description.inactive {
-  pointer-events: none;
-  transform: translate(-60%, -50%);
-  opacity: 0;
-  transition: 0.1s ease;
-}
-
-.action-button {
-  position: absolute;
-  left: 50%;
+  opacity: 0.3;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
 }
 
 .action-button.active {
-  bottom: 3.8em;
+  bottom: 2rem;
   transform: translateX(-50%) scale(1);
   opacity: 1;
   pointer-events: auto;
-  transition: 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .action-button.inactive {
   bottom: -80px;
-  transform: translateX(-50%) scale(0);
+  transform: translateX(-50%) scale(0.8);
   opacity: 0;
   pointer-events: none;
-  transition: 0.1s ease;
+  transition: all 0.2s ease;
+}
+
+/* 3D Sphere Styles */
+.sphere-container {
+  perspective: 1000px;
+  perspective-origin: center center;
+}
+
+.sphere-item {
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 /* Responsive Design */
-@media (max-width: 1500px) {
-  .face-title,
-  .face-description {
-    display: none;
+@media (max-width: 1200px) {
+  .text-info-container {
+    left: 1.5rem;
+    bottom: 1.5rem;
+    max-width: 280px;
   }
   
-  .action-button.active {
-    bottom: 2em;
+  .face-title {
+    font-size: 1.3rem;
+  }
+  
+  .face-description {
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
+  .text-info-container {
+    left: 1rem;
+    bottom: 1rem;
+    max-width: 240px;
+  }
+  
   .face-title {
-    font-size: 2rem;
-    left: 1em;
+    font-size: 1.2rem;
   }
   
   .face-description {
-    font-size: 1rem;
-    max-width: 10ch;
+    font-size: 0.8rem;
   }
   
   .action-button {
     width: 50px;
     height: 50px;
+    bottom: 1.5rem;
   }
   
   .action-button-icon {
     font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text-info-container {
+    left: 0.75rem;
+    bottom: 0.75rem;
+    max-width: 200px;
+  }
+  
+  .face-title {
+    font-size: 1.1rem;
+  }
+  
+  .face-description {
+    font-size: 0.75rem;
+  }
+  
+  .action-button {
+    width: 45px;
+    height: 45px;
+    bottom: 1rem;
+  }
+  
+  .action-button-icon {
+    font-size: 18px;
   }
 }
 
@@ -161,7 +208,7 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: transparent;
 }
 
 .infinite-menu-loading::after {

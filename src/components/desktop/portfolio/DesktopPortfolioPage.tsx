@@ -16,7 +16,7 @@ export default function DesktopPortfolioPage() {
       return portfolioImages;
     }
     return portfolioImages.filter((image) => image.category === activeFilter);
-  }, [activeFilter]);
+  }, [activeFilter]); // portfolioImages is static, so no need to include it in dependencies
 
   const handleItemClick = (portfolioImage: PortfolioImage) => {
     // Navigate to booking page with pre-selected style
@@ -35,14 +35,6 @@ export default function DesktopPortfolioPage() {
             <p className="text-white/80 text-lg max-w-2xl mx-auto mb-6">
               Discover our stunning collection of braiding styles. Each piece showcases our commitment to excellence and artistry.
             </p>
-            
-            {/* Interactive Instructions */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/70 text-sm">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2" />
-              </svg>
-              Drag to explore • Click arrow to book
-            </div>
           </div>
 
           {/* Filter Pills */}
@@ -56,7 +48,7 @@ export default function DesktopPortfolioPage() {
               <div style={{ height: '600px', position: 'relative' }}>
                 <InfiniteMenu 
                   portfolioImages={filteredImages}
-                  scale={2.3}
+                  scale={0.8}
                   onItemClick={handleItemClick}
                 />
               </div>

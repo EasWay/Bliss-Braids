@@ -171,10 +171,10 @@ export const portfolioImages: PortfolioImage[] = [
     aspectRatio: 'square'
   },
   
-  // Island Twist - Fixed file extension
+  // Island Twist - Using existing files
   {
     id: 'island-twist-1',
-    url: '/images/Island twist.png',
+    url: '/images/Island%20twist.png',
     styleName: 'Medium Island Twist',
     basePrice: 100,
     category: 'twists',
@@ -182,9 +182,25 @@ export const portfolioImages: PortfolioImage[] = [
   },
   {
     id: 'island-twist-2',
-    url: '/images/Island twist1.jpg',
+    url: '/images/Island%20twist1.jpg',
     styleName: 'Chunky Island Twist',
     basePrice: 90,
+    category: 'twists',
+    aspectRatio: 'square'
+  },
+  {
+    id: 'island-twist-3',
+    url: '/images/Island%20twist2.jpg',
+    styleName: 'Long Island Twist',
+    basePrice: 110,
+    category: 'twists',
+    aspectRatio: 'portrait'
+  },
+  {
+    id: 'island-twist-4',
+    url: '/images/Island%20twist3.jpg',
+    styleName: 'Short Island Twist',
+    basePrice: 85,
     category: 'twists',
     aspectRatio: 'square'
   },

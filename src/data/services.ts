@@ -97,7 +97,7 @@ export const services: Service[] = [
     baseDuration: 5,
     basePrice: 80,
     category: 'twists',
-    image: '/images/Island twist.jpg',
+    image: '/images/Island twist.png',
     sizeVariants: {
       small: { priceMultiplier: 1.4, timeMultiplier: 1.3, label: 'Small' },
       medium: { priceMultiplier: 1.0, timeMultiplier: 1.0, label: 'Medium' },

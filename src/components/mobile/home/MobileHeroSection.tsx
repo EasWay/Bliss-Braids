@@ -3,24 +3,14 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function VideoBackground() {
-  const [videoError, setVideoError] = useState(false);
-  const [videoOpacity, setVideoOpacity] = useState(1);
-  const [isMobile, setIsMobile] = useState(false);
+export default function MobileHeroSection() {
+  const [imageOpacity, setImageOpacity] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     // Scroll handler for mobile fade effect
     const handleScroll = () => {
-      if (!isMobile || !containerRef.current) return;
+      if (!containerRef.current) return;
 
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
@@ -31,65 +21,46 @@ export default function VideoBackground() {
       const fadeEnd = windowHeight * 0.8;
       
       if (scrollY <= fadeStart) {
-        setVideoOpacity(1);
+        setImageOpacity(1);
       } else if (scrollY >= fadeEnd) {
-        setVideoOpacity(0);
+        setImageOpacity(0);
       } else {
         // Calculate opacity between fadeStart and fadeEnd
         const fadeProgress = (scrollY - fadeStart) / (fadeEnd - fadeStart);
-        setVideoOpacity(1 - fadeProgress);
+        setImageOpacity(1 - fadeProgress);
       }
     };
 
-    if (isMobile) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll(); // Initial call
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
 
     return () => {
-      window.removeEventListener('resize', checkMobile);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile]);
+  }, []);
 
   return (
     <div ref={containerRef} className="relative w-full h-screen overflow-hidden -mt-20">
-      {/* Video Background */}
+      {/* Static Image Background */}
       <div 
         className="absolute inset-0 transition-opacity duration-300 ease-out"
-        style={{ opacity: isMobile ? videoOpacity : 1 }}
+        style={{ opacity: imageOpacity }}
       >
-        {!videoError ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/images/hero-poster1.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={() => setVideoError(true)}
-          >
-            <source src="/videos/hero-braiding1.mp4" type="video/mp4" />
-            <source src="/videos/hero-braidin.webm" type="video/webm" />
-          </video>
-        ) : (
-          // Fallback to static image if video fails
-          <Image
-            src="/images/hero-poster1.jpg"
-            alt="Professional braiding services"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-        )}
+        <Image
+          src="/images/hero-poster1.jpg"
+          alt="Professional braiding services - Bliss Braids Accra"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+          quality={85}
+        />
       </div>
 
       {/* Enhanced Gradient Overlay for better contrast */}
       <div 
         className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity duration-300 ease-out"
-        style={{ opacity: isMobile ? videoOpacity : 1 }}
+        style={{ opacity: imageOpacity }}
       />
 
       {/* Content - Bottom positioned, left aligned */}
