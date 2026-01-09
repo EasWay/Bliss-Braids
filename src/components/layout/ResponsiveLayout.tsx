@@ -16,34 +16,20 @@ export function ResponsiveLayout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     // Get sidebar state from localStorage for persistence (client-side only)
-    const savedState = localStorage.getItem("sidebar_state");
-    if (savedState !== null) {
-      setDefaultOpen(savedState === "true");
+    if (typeof window !== 'undefined') {
+      const savedState = localStorage.getItem("sidebar_state");
+      if (savedState !== null) {
+        setDefaultOpen(savedState === "true");
+      }
     }
   }, []);
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return (
-      <SidebarProvider defaultOpen={true}>
-        <div className="lg:hidden">
-          <AppSidebar />
-        </div>
-        <div className="hidden lg:block">
-          <DesktopSidebar />
-        </div>
-        <SidebarInset className="overflow-x-hidden lg:ml-[14rem]">
-          <RootLayoutContent>
-            {children}
-          </RootLayoutContent>
-        </SidebarInset>
-      </SidebarProvider>
-    );
-  }
+  // Prevent hydration mismatch by using consistent server/client rendering
+  const sidebarProps = mounted ? { defaultOpen } : { defaultOpen: true };
 
   return (
     <SidebarProvider 
-      defaultOpen={defaultOpen}
+      {...sidebarProps}
       style={{
         "--sidebar-width": "20rem",
         "--sidebar-width-mobile": "11rem",

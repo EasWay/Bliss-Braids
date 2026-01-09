@@ -1,5 +1,6 @@
 'use client';
 
+import MobileHeader from '@/components/mobile/MobileHeader';
 import MobileHeroSection from '@/components/mobile/home/MobileHeroSection';
 import WhyChooseUsSection from '@/components/home/WhyChooseUsSection';
 import { ServicesPreview } from '@/components/home/ServicesPreview';
@@ -12,7 +13,10 @@ import { SmartLink } from '@/components/ui/smart-link';
 export default function MobileHomePage() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#020119' }}>
-      {/* Hero Section - Mobile Optimized with Static Image */}
+      {/* Mobile Header */}
+      <MobileHeader />
+      
+      {/* Hero Section - Mobile Optimized with Video Background */}
       <MobileHeroSection />
       
       {/* Why Choose Us Section */}

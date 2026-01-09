@@ -1,15 +1,26 @@
+import { useState, useEffect } from 'react';
+
 export type DeviceType = 'mobile' | 'desktop';
 
 /**
- * Client-side device detection hook (for client components)
+ * Hydration-safe device detection hook
+ * Returns 'desktop' on server and first client render to prevent hydration mismatch
  */
 export function useDeviceType(): DeviceType {
-  if (typeof window === 'undefined') return 'desktop';
-  
-  const userAgent = window.navigator.userAgent;
-  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
-  
-  return mobileRegex.test(userAgent) ? 'mobile' : 'desktop';
+  const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
+    const userAgent = window.navigator.userAgent;
+    const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
+    
+    setDeviceType(mobileRegex.test(userAgent) ? 'mobile' : 'desktop');
+  }, []);
+
+  // Return 'desktop' until mounted to prevent hydration mismatch
+  return mounted ? deviceType : 'desktop';
 }
 
 /**

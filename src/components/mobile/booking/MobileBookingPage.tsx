@@ -2,7 +2,7 @@
 
 import MobileHeader from '@/components/mobile/MobileHeader';
 import MobileFooter from '@/components/mobile/MobileFooter';
-import BookingWizard from '@/components/booking/BookingWizard';
+import MobileBookingWizard from './MobileBookingWizard';
 
 export default function MobileBookingPage() {
   return (
@@ -20,7 +20,7 @@ export default function MobileBookingPage() {
             </p>
           </div>
           
-          <BookingWizard />
+          <MobileBookingWizard />
         </div>
       </main>
       
