@@ -1,0 +1,525 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #F50057;
+  --color-primary-light: #FEF2F7;
+  --color-charcoal: #111827;
+  --color-slate: #6B7280;
+  --color-bg-light: #F9FAFB;
+  --color-dark-navy: #020119;
+  
+  /* Design System Colors */
+  --color-background: 0 0% 100%;
+  --color-foreground: 0 0% 3.9%;
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 0 0% 3.9%;
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 0 0% 3.9%;
+  --color-primary-foreground: 0 0% 98%;
+  --color-secondary: 0 0% 96.1%;
+  --color-secondary-foreground: 0 0% 9%;
+  --color-muted: 0 0% 96.1%;
+  --color-muted-foreground: 0 0% 45.1%;
+  --color-accent: 0 0% 96.1%;
+  --color-accent-foreground: 0 0% 9%;
+  --color-destructive: 0 84.2% 60.2%;
+  --color-destructive-foreground: 0 0% 98%;
+  --color-border: 0 0% 89.8%;
+  --color-input: 0 0% 89.8%;
+  --color-ring: 0 0% 3.9%;
+  
+  /* Chart Colors */
+  --color-chart-1: 12 76% 61%;
+  --color-chart-2: 173 58% 39%;
+  --color-chart-3: 197 37% 24%;
+  --color-chart-4: 43 74% 66%;
+  --color-chart-5: 27 87% 67%;
+  
+  /* Sidebar Colors */
+  --color-sidebar-background: 0 0% 100%;
+  --color-sidebar-foreground: 0 0% 3.9%;
+  --color-sidebar-primary: 330 81% 60%;
+  --color-sidebar-primary-foreground: 0 0% 98%;
+  --color-sidebar-accent: 0 0% 96.1%;
+  --color-sidebar-accent-foreground: 0 0% 9%;
+  --color-sidebar-border: 0 0% 89.8%;
+  --color-sidebar-ring: 330 81% 60%;
+  
+  /* Border Radius */
+  --radius: 0.5rem;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  
+  /* Font Family */
+  --font-family-sans: var(--font-inter), Inter, 'Plus Jakarta Sans', sans-serif;
+  
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-in;
+  --animate-scale-in: scaleIn 0.6s ease-out;
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+.dark {
+  --color-background: 0 0% 3.9%;
+  --color-foreground: 0 0% 98%;
+  --color-card: 0 0% 3.9%;
+  --color-card-foreground: 0 0% 98%;
+  --color-popover: 0 0% 3.9%;
+  --color-popover-foreground: 0 0% 98%;
+  --color-primary-foreground: 0 0% 9%;
+  --color-secondary: 0 0% 14.9%;
+  --color-secondary-foreground: 0 0% 98%;
+  --color-muted: 0 0% 14.9%;
+  --color-muted-foreground: 0 0% 63.9%;
+  --color-accent: 0 0% 14.9%;
+  --color-accent-foreground: 0 0% 98%;
+  --color-destructive: 0 62.8% 30.6%;
+  --color-destructive-foreground: 0 0% 98%;
+  --color-border: 0 0% 14.9%;
+  --color-input: 0 0% 14.9%;
+  --color-ring: 0 0% 83.1%;
+  --color-chart-1: 220 70% 50%;
+  --color-chart-2: 160 60% 45%;
+  --color-chart-3: 30 80% 55%;
+  --color-chart-4: 280 65% 60%;
+  --color-chart-5: 340 75% 55%;
+  --color-sidebar-background: 0 0% 3.9%;
+  --color-sidebar-foreground: 0 0% 98%;
+  --color-sidebar-primary: 330 81% 60%;
+  --color-sidebar-primary-foreground: 0 0% 98%;
+  --color-sidebar-accent: 0 0% 14.9%;
+  --color-sidebar-accent-foreground: 0 0% 98%;
+  --color-sidebar-border: 0 0% 14.9%;
+  --color-sidebar-ring: 330 81% 60%;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background-color: hsl(var(--color-background));
+  color: hsl(var(--color-foreground));
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@utility sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes slide-in-from-right-full {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-to-right-full {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Animation Utilities */
+@utility animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@utility animate-scale-in {
+  animation: scaleIn 0.6s ease-out;
+}
+
+@utility animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+@utility animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+@utility animate-in {
+  animation-fill-mode: both;
+}
+
+@utility slide-in-from-right-full {
+  animation-name: slide-in-from-right-full;
+}
+
+@utility duration-300 {
+  animation-duration: 300ms;
+}
+
+/* Clean, minimal styles for service grid */
+.service-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card-hover:hover {
+  transform: translateY(-8px);
+}
+
+/* Professional image cycling animation */
+.service-image-transition {
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.service-image-fade-in {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.service-image-fade-out {
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+/* Image fills container completely */
+.service-image-cover {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Legacy CSS variable mappings for compatibility */
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+  --card: var(--color-card);
+  --card-foreground: var(--color-card-foreground);
+  --popover: var(--color-popover);
+  --popover-foreground: var(--color-popover-foreground);
+  --primary: 0 0% 9%;
+  --primary-foreground: var(--color-primary-foreground);
+  --secondary: var(--color-secondary);
+  --secondary-foreground: var(--color-secondary-foreground);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --accent: var(--color-accent);
+  --accent-foreground: var(--color-accent-foreground);
+  --destructive: var(--color-destructive);
+  --destructive-foreground: var(--color-destructive-foreground);
+  --border: var(--color-border);
+  --input: var(--color-input);
+  --ring: var(--color-ring);
+  --chart-1: var(--color-chart-1);
+  --chart-2: var(--color-chart-2);
+  --chart-3: var(--color-chart-3);
+  --chart-4: var(--color-chart-4);
+  --chart-5: var(--color-chart-5);
+  --sidebar-background: var(--color-sidebar-background);
+  --sidebar-foreground: var(--color-sidebar-foreground);
+  --sidebar-primary: var(--color-sidebar-primary);
+  --sidebar-primary-foreground: var(--color-sidebar-primary-foreground);
+  --sidebar-accent: var(--color-sidebar-accent);
+  --sidebar-accent-foreground: var(--color-sidebar-accent-foreground);
+  --sidebar-border: var(--color-sidebar-border);
+  --sidebar-ring: var(--color-sidebar-ring);
+}
+
+* {
+  border-color: hsl(var(--color-border));
+}
+/*
+ Mobile-optimized sidebar styles */
+@media (max-width: 768px) {
+  /* Ensure sidebar content is touch-friendly */
+  [data-sidebar="menu-button"] {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  /* Larger touch targets for mobile */
+  [data-sidebar="group-action"] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Better spacing for mobile sidebar */
+  [data-sidebar="content"] {
+    padding: 8px;
+  }
+  
+  [data-sidebar="group"] {
+    padding: 8px;
+  }
+  
+  /* Ensure sidebar header is touch-friendly */
+  [data-sidebar="header"] {
+    padding: 16px;
+  }
+  
+  /* Footer spacing for mobile */
+  [data-sidebar="footer"] {
+    padding: 16px;
+  }
+}
+
+/* Sidebar animations for smooth mobile experience */
+[data-sidebar="sidebar"] {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure proper backdrop blur on mobile */
+@supports (backdrop-filter: blur(8px)) {
+  .sidebar-backdrop {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Custom scrollbar for sidebar content */
+[data-sidebar="content"]::-webkit-scrollbar {
+  width: 4px;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-thumb {
+  background: hsl(var(--sidebar-border));
+  border-radius: 2px;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--sidebar-accent));
+}
+
+/* Enhanced sidebar drag functionality */
+.sidebar-dragging {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Draggable handle animations */
+@keyframes drag-pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.drag-handle-active {
+  animation: drag-pulse 1s ease-in-out infinite;
+}
+
+/* Improved touch targets for mobile drag */
+@media (max-width: 768px) {
+  .sidebar-drag-handle {
+    width: 16px; /* Larger touch target on mobile */
+  }
+}
+
+/* Sidebar drag visual feedback */
+.sidebar-drag-feedback {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+}
+
+/* Prevent text selection during drag */
+.dragging * {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+}
+
+/* Full sidebar drag functionality */
+.sidebar-draggable {
+  cursor: grab;
+  user-select: none;
+}
+
+.sidebar-draggable:active,
+.sidebar-draggable.dragging {
+  cursor: grabbing;
+}
+
+/* Prevent interaction with links/buttons during drag */
+.dragging a,
+.dragging button,
+.dragging [role="button"] {
+  pointer-events: none;
+}
+
+/* Visual feedback during drag */
+.sidebar-drag-active {
+  opacity: 0.9;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth drag animations */
+.sidebar-drag-transition {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced cursor states */
+.cursor-grab {
+  cursor: grab;
+}
+
+.cursor-grabbing {
+  cursor: grabbing;
+}
+
+/* Enhanced mobile sidebar trigger */
+@media (max-width: 768px) {
+  /* Ensure proper touch target for mobile sidebar trigger */
+  [data-sidebar="trigger"] {
+    min-height: 5px;
+    min-width: 5px;
+    padding: 8px;
+  }
+  
+  /* Better spacing around mobile trigger */
+  .sidebar-trigger-mobile {
+    margin: 4px;
+  }
+}
+
+/* Mobile drawer optimization */
+[data-sidebar="sidebar"][data-mobile="true"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hardware acceleration for smooth drawer transforms */
+[data-sidebar="sidebar"][data-mobile="true"] > div {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Disable text selection during touch */
+.touch-none {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+/* Custom sidebar border removal */
+[data-sidebar="sidebar"],
+[data-sidebar="sidebar"] > *,
+.group[data-side="right"] [data-sidebar="sidebar"],
+.group[data-side="left"] [data-sidebar="sidebar"] {
+  border: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* Remove any potential box-shadow that might look like borders */
+[data-sidebar="sidebar"] {
+  box-shadow: none !important;
+}/* C
+ustom sidebar rail styling */
+[data-sidebar="rail"] {
+  background-color: white !important;
+  width: 4px !important;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+[data-sidebar="rail"]:hover {
+  opacity: 1;
+  background-color: white !important;
+}
+
+/* Make the rail indicator more visible */
+[data-sidebar="rail"]::after {
+  background-color: white !important;
+  width: 4px !important;
+}/*
+ Sidebar trigger styling */
+[data-sidebar="trigger"] {
+  color: white !important;
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+[data-sidebar="trigger"]:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-sidebar="trigger"] svg {
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
