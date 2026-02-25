@@ -32,7 +32,9 @@ export function PerformanceMonitor() {
             metrics.lcp = entry.startTime;
             break;
           case 'first-input':
-            metrics.fid = entry.processingStart - entry.startTime;
+            if ('processingStart' in entry) {
+              metrics.fid = (entry as PerformanceEventTiming).processingStart - entry.startTime;
+            }
             break;
           case 'layout-shift':
             if (!(entry as any).hadRecentInput) {

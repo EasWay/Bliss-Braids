@@ -10,6 +10,7 @@ interface OptimizedImageProps {
   className?: string;
   priority?: boolean;
   fill?: boolean;
+  style?: React.CSSProperties;
   width?: number;
   height?: number;
   sizes?: string;

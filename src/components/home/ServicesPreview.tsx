@@ -12,8 +12,8 @@ export function ServicesPreview() {
   const displayServices = services.slice(0, 6);
 
   const MobileServiceCard = ({ service }: { service: typeof services[0] }) => {
-    // Calculate starting price (base price for short length, medium size)
-    const startingPrice = service.basePrice + (service.lengthVariants?.short?.priceAdd || 0);
+    // Calculate starting price (base price for short/shoulder length)
+    const startingPrice = service.basePrice + (service.lengthVariants?.shoulder?.priceAdd || 0);
     
     return (
       <a href={`/booking?style=${service.id}`} className="overflow-hidden rounded-xl cursor-pointer block">
@@ -48,8 +48,8 @@ export function ServicesPreview() {
   };
 
   const DesktopServiceCard = ({ service }: { service: typeof services[0] }) => {
-    // Calculate starting price (base price for short length, medium size)
-    const startingPrice = service.basePrice + (service.lengthVariants?.short?.priceAdd || 0);
+    // Calculate starting price (base price for short/shoulder length)
+    const startingPrice = service.basePrice + (service.lengthVariants?.shoulder?.priceAdd || 0);
     
     return (
       <figure className="shrink-0">
